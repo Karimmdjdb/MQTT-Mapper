@@ -19,9 +19,10 @@ type CustomizedClient struct {
 	deviceMutex sync.Mutex
 	ProtocolConfig
 	// Additional vars
-	MqttClient mqtt.Client
-	Data       map[string]interface{}
-	LastTime   time.Time
+	MqttClient  mqtt.Client
+	Data        map[string]interface{}
+	DataForPush map[string]interface{}
+	LastTime    time.Time
 }
 
 type ProtocolConfig struct {

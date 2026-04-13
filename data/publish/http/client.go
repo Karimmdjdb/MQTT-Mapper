@@ -59,6 +59,7 @@ func (pm *PushMethod) Push(data *common.DataModel) {
 
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)

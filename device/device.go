@@ -210,9 +210,9 @@ func pushHandler(ctx context.Context, twin *common.Twin, client *driver.Customiz
 		for {
 			select {
 			case <-ticker.C:
-				deviceData, err := client.GetDeviceData(visitorConfig)
+				deviceData, err := client.GetDeviceDataForPush(visitorConfig)
 				if err != nil {
-					klog.Errorf("publish error: %v", err)
+					klog.V(4).Infof("publish error: %v", err)
 					continue
 				}
 				sData, err := common.ConvertToString(deviceData)
