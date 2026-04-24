@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"sync"
-	"time"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
 	"github.com/kubeedge/mapper-framework/pkg/common"
@@ -57,16 +56,6 @@ func (c *CustomizedClient) InitDevice() error {
 	if token := c.MqttClient.Subscribe(c.ProtocolConfig.Topic, 0, nil); token.Wait() && token.Error() != nil {
 		return fmt.Errorf("failed to subscribe to topic %s: %v", c.ProtocolConfig.Topic, token.Error())
 	}
-
-	go func() {
-		for {
-			fmt.Print("D : ")
-			fmt.Println(c.Data)
-			fmt.Print("DP : ")
-			fmt.Println(c.DataForPush)
-			time.Sleep(200 * time.Millisecond)
-		}
-	}()
 
 	klog.Infof("Subscribed to topic: %s", c.ProtocolConfig.Topic)
 	return nil
